@@ -1,0 +1,250 @@
+Dates: 1960-10-01 → 2024-10-01
+Variables: SP500_Returns, Real_GDP, M2
+Chosen lag p (Override): 2
+IRF type: Orthogonal (Cholesky)
+Yearly aggregation: compound4; Overlap: No (Q4)
+Chosen lag & summary
+
+VAR Estimation Results:
+========================= 
+Endogenous variables: SP500_Returns, Real_GDP, M2 
+Deterministic variables: const 
+Sample size: 63 
+Log Likelihood: -539.836 
+Roots of the characteristic polynomial:
+0.6145 0.6145 0.3629 0.2389 0.1056 0.05632
+Call:
+vars::VAR(y = dat, p = p, type = "const")
+
+
+Estimation results for equation SP500_Returns: 
+============================================== 
+SP500_Returns = SP500_Returns.l1 + Real_GDP.l1 + M2.l1 + SP500_Returns.l2 + Real_GDP.l2 + M2.l2 + const 
+
+                 Estimate Std. Error t value Pr(>|t|)   
+SP500_Returns.l1 -0.05063    0.14689  -0.345  0.73164   
+Real_GDP.l1      -1.40131    1.10951  -1.263  0.21182   
+M2.l1            -0.01043    0.63430  -0.016  0.98694   
+SP500_Returns.l2 -0.10131    0.13479  -0.752  0.45544   
+Real_GDP.l2       0.71114    1.04384   0.681  0.49850   
+M2.l2            -1.24707    0.70446  -1.770  0.08213 . 
+const            20.61600    6.14171   3.357  0.00142 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Residual standard error: 15.81 on 56 degrees of freedom
+Multiple R-Squared: 0.1565,	Adjusted R-squared: 0.06608 
+F-statistic: 1.731 on 6 and 56 DF,  p-value: 0.1307 
+
+
+Estimation results for equation Real_GDP: 
+========================================= 
+Real_GDP = SP500_Returns.l1 + Real_GDP.l1 + M2.l1 + SP500_Returns.l2 + Real_GDP.l2 + M2.l2 + const 
+
+                 Estimate Std. Error t value Pr(>|t|)  
+SP500_Returns.l1  0.01840    0.01896   0.970   0.3361  
+Real_GDP.l1       0.20459    0.14322   1.429   0.1587  
+M2.l1             0.18105    0.08188   2.211   0.0311 *
+SP500_Returns.l2 -0.01177    0.01740  -0.676   0.5016  
+Real_GDP.l2       0.03174    0.13474   0.236   0.8147  
+M2.l2            -0.08757    0.09094  -0.963   0.3397  
+const             1.57389    0.79281   1.985   0.0520 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Residual standard error: 2.041 on 56 degrees of freedom
+Multiple R-Squared: 0.1666,	Adjusted R-squared: 0.07732 
+F-statistic: 1.866 on 6 and 56 DF,  p-value: 0.1029 
+
+
+Estimation results for equation M2: 
+=================================== 
+M2 = SP500_Returns.l1 + Real_GDP.l1 + M2.l1 + SP500_Returns.l2 + Real_GDP.l2 + M2.l2 + const 
+
+                 Estimate Std. Error t value Pr(>|t|)    
+SP500_Returns.l1 -0.01002    0.02874  -0.349 0.728769    
+Real_GDP.l1       0.01141    0.21712   0.053 0.958261    
+M2.l1             0.64797    0.12412   5.220 2.71e-06 ***
+SP500_Returns.l2 -0.04940    0.02638  -1.873 0.066319 .  
+Real_GDP.l2       0.18133    0.20426   0.888 0.378495    
+M2.l2            -0.38399    0.13785  -2.785 0.007280 ** 
+const             4.87225    1.20185   4.054 0.000157 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Residual standard error: 3.094 on 56 degrees of freedom
+Multiple R-Squared: 0.3596,	Adjusted R-squared: 0.2909 
+F-statistic:  5.24 on 6 and 56 DF,  p-value: 0.0002425 
+
+
+
+Covariance matrix of residuals:
+              SP500_Returns Real_GDP      M2
+SP500_Returns       249.984  13.4364  3.4414
+Real_GDP             13.436   4.1655 -0.8684
+M2                    3.441  -0.8684  9.5726
+
+Correlation matrix of residuals:
+              SP500_Returns Real_GDP       M2
+SP500_Returns       1.00000   0.4164  0.07035
+Real_GDP            0.41638   1.0000 -0.13752
+M2                  0.07035  -0.1375  1.00000
+Diagnostics
+--- Serial correlation (Portmanteau) ---
+
+	Portmanteau Test (asymptotic)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 80.35, df = 126, p-value = 0.9995
+
+
+--- ARCH effects ---
+
+	ARCH (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 306, df = 432, p-value = 1
+
+
+--- Normality ---
+$JB
+
+	JB-Test (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 106.73, df = 6, p-value < 2.2e-16
+
+
+$Skewness
+
+	Skewness only (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 36.839, df = 3, p-value = 4.978e-08
+
+
+$Kurtosis
+
+	Kurtosis only (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 69.893, df = 3, p-value = 4.552e-15
+
+
+
+--- Stability roots (modulus) ---
+[1] 0.61454784 0.61454784 0.36286938 0.23892577 0.10559629 0.05631837
+Granger causality to SP500_Returns
+=== Equation-level Granger causality (full VAR, SP500 equation) ===
+
+--- H0: past M2 do NOT Granger-cause SP500_Returns (in full VAR) ---
+
+Linear hypothesis test:
+M2.l1 = 0
+M2.l2 = 0
+
+Model 1: restricted model
+Model 2: y ~ -1 + (SP500_Returns.l1 + Real_GDP.l1 + M2.l1 + SP500_Returns.l2 + 
+    Real_GDP.l2 + M2.l2 + const)
+
+  Res.Df   RSS Df Sum of Sq      F Pr(>F)
+1     58 15011                           
+2     56 13999  2    1012.3 2.0247 0.1416
+
+--- H0: past Real_GDP do NOT Granger-cause SP500_Returns (in full VAR) ---
+
+Linear hypothesis test:
+Real_GDP.l1 = 0
+Real_GDP.l2 = 0
+
+Model 1: restricted model
+Model 2: y ~ -1 + (SP500_Returns.l1 + Real_GDP.l1 + M2.l1 + SP500_Returns.l2 + 
+    Real_GDP.l2 + M2.l2 + const)
+
+  Res.Df   RSS Df Sum of Sq     F Pr(>F)
+1     58 14436                          
+2     56 13999  2    436.98 0.874 0.4229
+
+
+=== Pairwise (bivariate) Granger causality ===
+
+---------------------------------------------
+Bivariate VAR for: Real_GDP <-> SP500_Returns
+---------------------------------------------
+
+--- Does Real_GDP Granger-cause SP500_Returns? (bivariate) ---
+$Granger
+
+	Granger causality H0: Real_GDP do not Granger-cause SP500_Returns
+
+data:  VAR object subvar
+F-Test = 1.8762, df1 = 2, df2 = 116, p-value = 0.1578
+
+
+$Instant
+
+	H0: No instantaneous causality between: Real_GDP and SP500_Returns
+
+data:  VAR object subvar
+Chi-squared = 8.0321, df = 1, p-value = 0.004595
+
+
+
+--- Does SP500_Returns Granger-cause Real_GDP ? (bivariate) ---
+$Granger
+
+	Granger causality H0: SP500_Returns do not Granger-cause Real_GDP
+
+data:  VAR object subvar
+F-Test = 1.2583, df1 = 2, df2 = 116, p-value = 0.288
+
+
+$Instant
+
+	H0: No instantaneous causality between: SP500_Returns and Real_GDP
+
+data:  VAR object subvar
+Chi-squared = 8.0321, df = 1, p-value = 0.004595
+
+
+
+---------------------------------------------
+Bivariate VAR for: M2 <-> SP500_Returns
+---------------------------------------------
+
+--- Does M2 Granger-cause SP500_Returns? (bivariate) ---
+$Granger
+
+	Granger causality H0: M2 do not Granger-cause SP500_Returns
+
+data:  VAR object subvar
+F-Test = 3.1066, df1 = 2, df2 = 116, p-value = 0.0485
+
+
+$Instant
+
+	H0: No instantaneous causality between: M2 and SP500_Returns
+
+data:  VAR object subvar
+Chi-squared = 0.34233, df = 1, p-value = 0.5585
+
+
+
+--- Does SP500_Returns Granger-cause M2 ? (bivariate) ---
+$Granger
+
+	Granger causality H0: SP500_Returns do not Granger-cause M2
+
+data:  VAR object subvar
+F-Test = 1.5714, df1 = 2, df2 = 116, p-value = 0.2121
+
+
+$Instant
+
+	H0: No instantaneous causality between: SP500_Returns and M2
+
+data:  VAR object subvar
+Chi-squared = 0.34233, df = 1, p-value = 0.5585
