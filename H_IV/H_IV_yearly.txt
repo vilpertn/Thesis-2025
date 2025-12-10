@@ -1,0 +1,147 @@
+Dates: 1960-10-01 → 2024-10-01
+Variables: SP500_Returns, M2
+Chosen lag p (BIC (Schwarz)): 2
+IRF type: Orthogonal (Cholesky)
+Yearly aggregation: compound4; Overlap: No (Q4)
+Chosen lag & summary
+
+VAR Estimation Results:
+========================= 
+Endogenous variables: SP500_Returns, M2 
+Deterministic variables: const 
+Sample size: 63 
+Log Likelihood: -417.723 
+Roots of the characteristic polynomial:
+0.6335 0.6335 0.2956 0.1559
+Call:
+vars::VAR(y = dat, p = p, type = "const")
+
+
+Estimation results for equation SP500_Returns: 
+============================================== 
+SP500_Returns = SP500_Returns.l1 + M2.l1 + SP500_Returns.l2 + M2.l2 + const 
+
+                 Estimate Std. Error t value Pr(>|t|)    
+SP500_Returns.l1 -0.14727    0.12669  -1.162 0.249820    
+M2.l1             0.07254    0.62361   0.116 0.907799    
+SP500_Returns.l2 -0.11926    0.12563  -0.949 0.346389    
+M2.l2            -1.51668    0.66687  -2.274 0.026662 *  
+const            20.76623    5.12048   4.056 0.000151 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Residual standard error: 15.78 on 58 degrees of freedom
+Multiple R-Squared: 0.1301,	Adjusted R-squared: 0.07013 
+F-statistic: 2.169 on 4 and 58 DF,  p-value: 0.08377 
+
+
+Estimation results for equation M2: 
+=================================== 
+M2 = SP500_Returns.l1 + M2.l1 + SP500_Returns.l2 + M2.l2 + const 
+
+                 Estimate Std. Error t value Pr(>|t|)    
+SP500_Returns.l1 -0.01509    0.02460  -0.614  0.54194    
+M2.l1             0.63513    0.12109   5.245 2.30e-06 ***
+SP500_Returns.l2 -0.04185    0.02439  -1.716  0.09159 .  
+M2.l2            -0.37713    0.12949  -2.912  0.00508 ** 
+const             5.47197    0.99429   5.503 8.83e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Residual standard error: 3.063 on 58 degrees of freedom
+Multiple R-Squared: 0.3497,	Adjusted R-squared: 0.3048 
+F-statistic: 7.797 on 4 and 58 DF,  p-value: 4.24e-05 
+
+
+
+Covariance matrix of residuals:
+              SP500_Returns    M2
+SP500_Returns       248.898 3.572
+M2                    3.572 9.385
+
+Correlation matrix of residuals:
+              SP500_Returns      M2
+SP500_Returns       1.00000 0.07392
+M2                  0.07392 1.00000
+Diagnostics
+--- Serial correlation (Portmanteau) ---
+
+	Portmanteau Test (asymptotic)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 40.144, df = 56, p-value = 0.9457
+
+
+--- ARCH effects ---
+
+	ARCH (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 119.82, df = 108, p-value = 0.2057
+
+
+--- Normality ---
+$JB
+
+	JB-Test (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 176.92, df = 4, p-value < 2.2e-16
+
+
+$Skewness
+
+	Skewness only (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 42.012, df = 2, p-value = 7.538e-10
+
+
+$Kurtosis
+
+	Kurtosis only (multivariate)
+
+data:  Residuals of VAR object res$model
+Chi-squared = 134.9, df = 2, p-value < 2.2e-16
+
+
+
+--- Stability roots (modulus) ---
+[1] 0.6335427 0.6335427 0.2956292 0.1558586
+Granger causality to SP500_Returns
+
+--- Does M2 Granger-cause SP500_Returns? (within full VAR) ---
+$Granger
+
+	Granger causality H0: M2 do not Granger-cause SP500_Returns
+
+data:  VAR object res$model
+F-Test = 3.1066, df1 = 2, df2 = 116, p-value = 0.0485
+
+
+$Instant
+
+	H0: No instantaneous causality between: M2 and SP500_Returns
+
+data:  VAR object res$model
+Chi-squared = 0.34233, df = 1, p-value = 0.5585
+
+
+
+--- Does SP500_Returns Granger-cause M2 ? (bivariate VAR) ---
+$Granger
+
+	Granger causality H0: SP500_Returns do not Granger-cause M2
+
+data:  VAR object subvar
+F-Test = 1.5714, df1 = 2, df2 = 116, p-value = 0.2121
+
+
+$Instant
+
+	H0: No instantaneous causality between: SP500_Returns and M2
+
+data:  VAR object subvar
+Chi-squared = 0.34233, df = 1, p-value = 0.5585
